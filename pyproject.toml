@@ -1,0 +1,31 @@
+[project]
+name = "mcp-server-send-email"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Vijay Parmar", email = "Vijay.Parmar1@ibm.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "email-validator>=2.3.0",
+    "mcp>=1.27.2",
+    "pydantic>=2.13.4",
+    "pydantic-settings>=2.14.1",
+    "python-dotenv>=1.2.2",
+]
+
+[project.scripts]
+mcp-server-send-email = "mcp_server_send_email:main"
+
+[build-system]
+requires = ["uv_build>=0.11.18,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "anyio>=4.13.0",
+    "pyright>=1.1.410",
+    "pytest>=9.0.3",
+    "ruff>=0.15.15",
+]
