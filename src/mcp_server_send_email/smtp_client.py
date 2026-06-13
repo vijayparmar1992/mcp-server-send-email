@@ -13,7 +13,6 @@ def send_email(request: EmailRequest) -> EmailResponse:
     smtp_password = os.getenv("SMTP_PASSWORD", "")
     smtp_from = os.getenv("SMTP_FROM", "")
     smtp_starttls = os.getenv("SMTP_STARTTLS", "true").lower() == "true"
-    smtp_dry_run = os.getenv("SMTP_DRY_RUN", "true").lower() == "true"
 
     if not smtp_from:
         return EmailResponse(
@@ -21,14 +20,6 @@ def send_email(request: EmailRequest) -> EmailResponse:
             to=[str(email) for email in request.to],
             subject=request.subject,
             detail="SMTP_FROM environment variable is not set",
-        )
-
-    if smtp_dry_run:
-        return EmailResponse(
-            status="dry_run",
-            to=[str(email) for email in request.to],
-            subject=request.subject,
-            detail="Dry run enabled. Email was not sent.",
         )
 
     msg = EmailMessage()
@@ -68,14 +59,3 @@ def send_email(request: EmailRequest) -> EmailResponse:
             detail=f"Failed to send email: {str(e)}",
         )
 
-
-
-if __name__ == "__main__":
-    request = EmailRequest(
-        to=["vijay.parmar1@ibm.com"],
-        subject="Test email",
-        message="Hello from smtp_client.py",
-    )
-
-    response = send_email(request)
-    print(response.model_dump_json(indent=2))

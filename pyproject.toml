@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 authors = [
-    { name = "Vijay Parmar", email = "Vijay.Parmar1@ibm.com" }
+    { name = "Vijay Parmar", email = "Vijay.Parmar1992@gmail.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
-mcp-server-send-email = "mcp_server_send_email:main"
+mcp-server-send-email = "mcp_server_send_email.server:main"
 
 [build-system]
 requires = ["uv_build>=0.11.18,<0.12.0"]
